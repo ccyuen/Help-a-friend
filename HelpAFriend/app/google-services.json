@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "231293819590",
+    "firebase_url": "https://help-a-friend-cf735.firebaseio.com",
+    "project_id": "help-a-friend-cf735",
+    "storage_bucket": "help-a-friend-cf735.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:231293819590:android:e2e99b8088209506",
+        "android_client_info": {
+          "package_name": "com.example.staff.helpafriend"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "231293819590-mh1jg58q6mlsookjhh9leqj9jhcf793f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.staff.helpafriend",
+            "certificate_hash": "e94bac60d0ce41fc4b53b2c04693fa74c4c7721e"
+          }
+        },
+        {
+          "client_id": "231293819590-teb727faeu8tcl6iedbfjooq3ko6ms4t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzdhDQYrRIqxmy0bb2TmyOWwD4uMjyFG8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "231293819590-teb727faeu8tcl6iedbfjooq3ko6ms4t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
