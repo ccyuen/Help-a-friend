@@ -1,43 +1,73 @@
 package com.example.staff.helpafriend;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import android.view.*;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String DEBUG = "AUTH";
+
+    public TextView mStatusTextView;
+    public TextView mDetailTextView;
+    public EditText mEmailField;
+    public EditText mPasswordField;
+
+    private FirebaseAuth mAuth;
+    private Authentication auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        Database database = new Database();
-//        database.addMessage("Hello World Test");
+        // Views
+        mStatusTextView = (TextView) findViewById(R.id.status);
+        mDetailTextView = (TextView) findViewById(R.id.detail);
+        mEmailField = (EditText) findViewById(R.id.field_email);
+        mPasswordField = (EditText) findViewById(R.id.field_password);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
-        myRef.setValue("Hello World");
+        // Buttons
+        findViewById(R.id.email_sign_in_button).setOnClickListener(this);
+        findViewById(R.id.email_create_account_button).setOnClickListener(this);
+        findViewById(R.id.sign_out_button).setOnClickListener(this);
+        findViewById(R.id.verify_email_button).setOnClickListener(this);
 
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                Log.d("test", "Value is: " + value);
-            }
+        // [START initialize_auth]
+        mAuth = FirebaseAuth.getInstance();
+        auth = new Authentication(this, mAuth);
+    }
 
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("test", "Failed to read value.", error.toException());
-            }
-        });
+    @Override
+    public void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        auth.updateUI(currentUser);
+    }
+
+    @Override
+    public void onClick(View v) {
+        int i = v.getId();
+        if (i == R.id.email_create_account_button) {
+            auth.createAccount(mEmailField.getText().toString(), mPasswordField.getText().toString());
+        } else if (i == R.id.email_sign_in_button) {
+            auth.signIn(mEmailField.getText().toString(), mPasswordField.getText().toString());
+        } else if (i == R.id.sign_out_button) {
+            auth.signOut();
+        } else if (i == R.id.verify_email_button) {
+            auth.sendEmailVerification();
+        }
     }
 }
