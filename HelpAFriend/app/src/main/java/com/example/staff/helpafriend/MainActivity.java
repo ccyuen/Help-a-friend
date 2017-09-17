@@ -31,19 +31,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
+        setContentView(R.layout.activity_login);
+/*
         // Views
-        mStatusTextView = (TextView) findViewById(R.id.status);
-        mDetailTextView = (TextView) findViewById(R.id.detail);
+//      mStatusTextView = (TextView) findViewById(R.id.status);
+//        mDetailTextView = (TextView) findViewById(R.id.detail);
         mEmailField = (EditText) findViewById(R.id.field_email);
         mPasswordField = (EditText) findViewById(R.id.field_password);
 
         // Buttons
-        findViewById(R.id.email_sign_in_button).setOnClickListener(this);
-        findViewById(R.id.email_create_account_button).setOnClickListener(this);
-        findViewById(R.id.sign_out_button).setOnClickListener(this);
-        findViewById(R.id.verify_email_button).setOnClickListener(this);
+      //  findViewById(R.id.email_sign_in_button).setOnClickListener(this);
+//        findViewById(R.id.email_create_account_button).setOnClickListener(this);
+//        findViewById(R.id.sign_out_button).setOnClickListener(this);
+//        findViewById(R.id.verify_email_button).setOnClickListener(this);
 
         // [START initialize_auth]
         mAuth = FirebaseAuth.getInstance();
@@ -54,20 +54,21 @@ public class MainActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        auth.updateUI(currentUser);
+     //   auth.updateUI(currentUser);
     }
 
-    @Override
-    public void onClick(View v) {
-        int i = v.getId();
-        if (i == R.id.email_create_account_button) {
-            auth.createAccount(mEmailField.getText().toString(), mPasswordField.getText().toString());
-        } else if (i == R.id.email_sign_in_button) {
-            auth.signIn(mEmailField.getText().toString(), mPasswordField.getText().toString());
-        } else if (i == R.id.sign_out_button) {
-            auth.signOut();
-        } else if (i == R.id.verify_email_button) {
-            auth.sendEmailVerification();
-        }
-    }
+//    @Override
+//    public void onClick(View v) {
+//        int i = v.getId();
+//        if (i == R.id.email_create_account_button) {
+//            auth.createAccount(mEmailField.getText().toString(), mPasswordField.getText().toString());
+//        } else if (i == R.id.email_sign_in_button) {
+//            auth.signIn(mEmailField.getText().toString(), mPasswordField.getText().toString());
+//        } else if (i == R.id.sign_out_button) {
+//            auth.signOut();
+//        } else if (i == R.id.verify_email_button) {
+//            auth.sendEmailVerification();
+//        }
+*/    }
+
 }

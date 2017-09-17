@@ -42,13 +42,13 @@ public class Authentication {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(m.DEBUG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+                           // updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(m.DEBUG, "createUserWithEmail:failure", task.getException());
                             Toast.makeText(m.getApplicationContext(), "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                            updateUI(null);
+                          //  updateUI(null);
                         }
                     }
                 });
@@ -69,17 +69,17 @@ public class Authentication {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(m.DEBUG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+                           // updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(m.DEBUG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(m.getApplicationContext(), "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                            updateUI(null);
+                          //  updateUI(null);
                         }
 
                         if (!task.isSuccessful()) {
-                            m.mStatusTextView.setText(R.string.auth_failed);
+                           // m.mStatusTextView.setText(R.string.auth_failed);
                         }
                     }
                 });
@@ -87,34 +87,34 @@ public class Authentication {
 
     public void signOut() {
         mAuth.signOut();
-        updateUI(null);
+        //updateUI(null);
     }
 
-    public void sendEmailVerification() {
-        // Disable button
-        m.findViewById(R.id.verify_email_button).setEnabled(false);
-        // Send verification email
-        final FirebaseUser user = mAuth.getCurrentUser();
-        user.sendEmailVerification()
-                .addOnCompleteListener(m, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        // Re-enable button
-                        m.findViewById(R.id.verify_email_button).setEnabled(true);
-
-                        if (task.isSuccessful()) {
-                            Toast.makeText(m.getApplicationContext(),
-                                    "Verification email sent to " + user.getEmail(),
-                                    Toast.LENGTH_SHORT).show();
-                        } else {
-                            Log.e(m.DEBUG, "sendEmailVerification", task.getException());
-                            Toast.makeText(m.getApplicationContext(),
-                                    "Failed to send verification email.",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-    }
+//    public void sendEmailVerification() {
+//        // Disable button
+//        m.findViewById(R.id.verify_email_button).setEnabled(false);
+//        // Send verification email
+//        final FirebaseUser user = mAuth.getCurrentUser();
+//        user.sendEmailVerification()
+//                .addOnCompleteListener(m, new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        // Re-enable button
+//                        m.findViewById(R.id.verify_email_button).setEnabled(true);
+//
+//                        if (task.isSuccessful()) {
+//                            Toast.makeText(m.getApplicationContext(),
+//                                    "Verification email sent to " + user.getEmail(),
+//                                    Toast.LENGTH_SHORT).show();
+//                        } else {
+//                            Log.e(m.DEBUG, "sendEmailVerification", task.getException());
+//                            Toast.makeText(m.getApplicationContext(),
+//                                    "Failed to send verification email.",
+//                                    Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                });
+//    }
 
     private boolean validateForm() {
         boolean valid = true;
@@ -138,23 +138,23 @@ public class Authentication {
         return valid;
     }
 
-    public void updateUI(FirebaseUser user) {
-        if (user != null) {
-            m.mStatusTextView.setText(R.string.emailpassword_status_fmt + "  " + user.getEmail() + "  " +  user.isEmailVerified()));
-            m.mDetailTextView.setText(R.string.firebase_status_fmt + "  " + user.getUid());
-
-            m.findViewById(R.id.email_password_buttons).setVisibility(View.GONE);
-            m.findViewById(R.id.email_password_fields).setVisibility(View.GONE);
-            m.findViewById(R.id.signed_in_buttons).setVisibility(View.VISIBLE);
-
-            m.findViewById(R.id.verify_email_button).setEnabled(!user.isEmailVerified());
-        } else {
-            m.mStatusTextView.setText(R.string.signed_out);
-            m.mDetailTextView.setText(null);
-
-            m.findViewById(R.id.email_password_buttons).setVisibility(View.VISIBLE);
-            m.findViewById(R.id.email_password_fields).setVisibility(View.VISIBLE);
-            m.findViewById(R.id.signed_in_buttons).setVisibility(View.GONE);
-        }
-    }
+//    public void updateUI(FirebaseUser user) {
+//        if (user != null) {
+//            m.mStatusTextView.setText(R.string.emailpassword_status_fmt + "  " + user.getEmail() + "  " +  user.isEmailVerified()));
+//            m.mDetailTextView.setText(R.string.firebase_status_fmt + "  " + user.getUid());
+//
+//            m.findViewById(R.id.email_password_buttons).setVisibility(View.GONE);
+//            m.findViewById(R.id.email_password_fields).setVisibility(View.GONE);
+//            m.findViewById(R.id.signed_in_buttons).setVisibility(View.VISIBLE);
+//
+//            m.findViewById(R.id.verify_email_button).setEnabled(!user.isEmailVerified());
+//        } else {
+//            m.mStatusTextView.setText(R.string.signed_out);
+//            m.mDetailTextView.setText(null);
+//
+//            m.findViewById(R.id.email_password_buttons).setVisibility(View.VISIBLE);
+//            m.findViewById(R.id.email_password_fields).setVisibility(View.VISIBLE);
+//            m.findViewById(R.id.signed_in_buttons).setVisibility(View.GONE);
+//        }
+//    }
 }
